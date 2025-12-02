@@ -3,20 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pixel Plains — Overworld Portfolio</title>
-  <meta name="description" content="A playful top-down pixel overworld that doubles as a quick interactive landing page." />
+  <title>Black + Purple Personal Site</title>
+  <meta name="description" content="Sleek one-page personal website with smooth motion and a black/purple palette." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      color-scheme: light dark;
-      --bg-deep: #05060f;
-      --text: #f5f8ff;
-      --accent: #9ff6ff;
-      --accent-strong: #ffba4a;
-      --tile: clamp(32px, 8vmin, 110px);
-      font-family: "Space Grotesk", "Press Start 2P", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color-scheme: dark;
+      --black: #050505;
+      --midnight: #090914;
+      --deep-purple: #5b2cff;
+      --electric: #b368ff;
+      --text: #f8f8ff;
+      --muted: #a8a8c2;
+      --card-bg: rgba(12, 12, 20, 0.72);
+      --border: rgba(255, 255, 255, 0.08);
+      --radius: 24px;
+      font-size: 16px;
+      font-family: "Space Grotesk", "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -24,371 +29,344 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: "Space Grotesk", sans-serif;
-      background: radial-gradient(circle at 20% 20%, #1b1f39, var(--bg-deep));
+      background: radial-gradient(circle at 20% 20%, rgba(91, 44, 255, 0.3), transparent 55%),
+        radial-gradient(circle at 80% 0%, rgba(179, 104, 255, 0.35), transparent 60%),
+        linear-gradient(135deg, var(--black), var(--midnight));
       color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    a { color: inherit; }
+    a { color: var(--electric); text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-    .world {
-      position: relative;
-      min-height: 100vh;
-      width: 100%;
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 1.2rem clamp(1.2rem, 4vw, 4rem);
+      backdrop-filter: blur(20px);
+      background: rgba(5, 5, 8, 0.85);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: clamp(1rem, 4vw, 3rem);
+      justify-content: space-between;
+      gap: 1rem;
     }
 
-    .world::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.08), transparent 45%);
-      pointer-events: none;
-    }
-
-    .world-branding {
-      position: absolute;
-      top: clamp(1rem, 3vw, 2.5rem);
-      left: clamp(1rem, 4vw, 3rem);
-      z-index: 2;
-      backdrop-filter: blur(6px);
-      background: rgba(6, 8, 20, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 0.85rem 1.25rem;
-      border-radius: 16px;
-    }
-
-    .world-branding .eyebrow {
-      font-family: "Press Start 2P", monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 0.4rem;
     }
 
-    .world-branding h1 {
+    nav ul {
+      display: flex;
+      gap: 1.25rem;
+      list-style: none;
       margin: 0;
-      font-family: "Press Start 2P", monospace;
-      font-size: clamp(1.1rem, 4vw, 1.8rem);
-      letter-spacing: 0.12em;
+      padding: 0;
+      font-size: 0.95rem;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
-    .game-map {
+    nav a {
+      color: var(--text);
+      opacity: 0.8;
+      transition: opacity 200ms ease;
+    }
+
+    nav a:hover {
+      opacity: 1;
+    }
+
+    main {
+      padding: clamp(2rem, 6vw, 5rem) clamp(1.5rem, 6vw, 6rem) 4rem;
+    }
+
+    section {
+      margin-bottom: clamp(3rem, 8vw, 6rem);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.1;
+      margin: 0 0 1.2rem;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin: 0 0 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.9rem 1.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 1px solid transparent;
+      transition: transform 200ms ease, box-shadow 200ms ease, border 200ms ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--deep-purple), var(--electric));
+      color: var(--text);
+      box-shadow: 0 15px 40px rgba(91, 44, 255, 0.35);
+    }
+
+    .btn-ghost {
+      border-color: var(--border);
+      color: var(--muted);
+      background: transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 45px rgba(179, 104, 255, 0.35);
+    }
+
+    .hero-preview {
       position: relative;
-      width: calc(var(--tile) * 10);
-      aspect-ratio: 10 / 8;
-      background: linear-gradient(180deg, #79da87, #4f9c57);
-      border-radius: 32px;
-      border: 6px solid #05070f;
+      border-radius: var(--radius);
+      padding: 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
       overflow: hidden;
-      box-shadow: inset 0 0 0 4px rgba(0, 0, 0, 0.4), 0 35px 70px rgba(0, 0, 0, 0.65);
-      image-rendering: pixelated;
-      z-index: 1;
     }
 
-    .game-map::before {
+    .hero-preview::after {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0, rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent calc(var(--tile) / 2)),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0, rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent calc(var(--tile) / 2));
+      background: linear-gradient(120deg, rgba(91, 44, 255, 0.1), rgba(179, 104, 255, 0.15));
+      mix-blend-mode: screen;
       pointer-events: none;
     }
 
-    .path {
-      position: absolute;
-      background:
-        repeating-linear-gradient(90deg, #e0cda8 0, #e0cda8 calc(var(--tile) / 2), #d2b98f calc(var(--tile) / 2), #d2b98f calc(var(--tile)));
-      box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.2);
-      border: 2px solid rgba(0, 0, 0, 0.2);
-      border-radius: 12px;
-    }
-
-    .path-horizontal {
-      left: calc(var(--tile) * -0.2);
-      top: calc(var(--tile) * 3);
-      width: calc(var(--tile) * 10.4);
-      height: calc(var(--tile) / 1.4);
-    }
-
-    .path-vertical {
-      left: calc(var(--tile) * 4.5);
-      top: calc(var(--tile) * 2.8);
-      width: calc(var(--tile) / 1.2);
-      height: calc(var(--tile) * 5);
-    }
-
-    .pond {
-      position: absolute;
-      left: calc(var(--tile) * 0.8);
-      top: calc(var(--tile) * 4.5);
-      width: calc(var(--tile) * 2.8);
-      height: calc(var(--tile) * 1.8);
-      background: radial-gradient(circle at 30% 30%, #b4ffff, #6dd1ff 45%, #3790d6 70%, #1a4c8f);
-      border: 4px solid #173a6a;
-      border-radius: 45% 55% 50% 60%;
-      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .tree {
-      --x: 1;
-      --y: 1;
-      position: absolute;
-      left: calc(var(--tile) * var(--x));
-      top: calc(var(--tile) * var(--y));
-      width: calc(var(--tile) / 1.6);
-      height: calc(var(--tile) / 1.6);
-      background: radial-gradient(circle at 35% 35%, #69c77a, #2c6636 70%);
-      border: 4px solid #142c19;
-      border-radius: 9px;
-      box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.25), 0 8px 0 rgba(0, 0, 0, 0.4);
-    }
-
-    .tree::after {
-      content: "";
-      position: absolute;
-      width: 6px;
-      height: 12px;
-      background: #6b3f1e;
-      bottom: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 2px;
-      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
-    }
-
-    .lab {
-      position: absolute;
-      left: calc(var(--tile) * 6.8);
-      top: calc(var(--tile) * 1.2);
-      width: calc(var(--tile) * 2.8);
-      height: calc(var(--tile) * 2.4);
-      background: #fdf8ec;
-      border: 4px solid #d3c7b0;
-      border-radius: 12px;
-      box-shadow: inset 0 -10px 0 rgba(0, 0, 0, 0.08), 0 12px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    .lab::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: -28px;
-      transform: translateX(-50%);
-      width: 110%;
-      height: 28px;
-      background: linear-gradient(90deg, #ff7c7c, #ffa95e);
-      border-radius: 14px 14px 4px 4px;
-      border: 4px solid #4a1c1c;
-      box-shadow: 0 8px 0 rgba(0, 0, 0, 0.25);
-    }
-
-    .lab::after {
-      content: "LAB";
-      position: absolute;
-      top: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: "Press Start 2P", monospace;
-      font-size: 0.6rem;
+    .hero-preview h2 {
+      margin: 0 0 1rem;
+      font-size: 1rem;
       letter-spacing: 0.2em;
-      color: #5b647d;
-    }
-
-    .lab-door {
-      position: absolute;
-      bottom: calc(var(--tile) * 0.1);
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(var(--tile) / 1.45);
-      height: calc(var(--tile) / 1.2);
-      border-radius: 9px;
-      border: 3px solid #090c1a;
-      background: linear-gradient(180deg, #232854, #111331);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-family: "Press Start 2P", monospace;
-      font-size: 0.55rem;
       text-transform: uppercase;
-      color: #ffffff;
-      box-shadow: 0 0 14px rgba(255, 186, 74, 0.85), 0 0 28px rgba(255, 186, 74, 0.4);
-      animation: glow 1.5s ease-in-out infinite;
+      color: var(--muted);
     }
 
-    .lab-door span {
-      display: block;
-      font-size: 0.45rem;
-      color: var(--accent-strong);
-      margin-top: 6px;
+    .hero-preview .stat {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin: 0;
     }
 
-    .player,
-    .npc {
-      position: absolute;
-      width: calc(var(--tile) / 1.6);
-      height: calc(var(--tile) / 1.2);
-      border: 4px solid #111224;
-      border-radius: 10px;
-      box-shadow: 0 6px 0 rgba(0, 0, 0, 0.35);
-      transition: left 0.12s linear, top 0.12s linear;
+    .hero-preview .stat-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
     }
 
-    .player {
-      --player-x: 4.5;
-      --player-y: 4.2;
-      left: calc(var(--tile) * var(--player-x));
-      top: calc(var(--tile) * var(--player-y));
-      transform: translate(-50%, -65%);
-      background:
-        linear-gradient(180deg, #fbd9c5 40%, transparent 40%),
-        linear-gradient(0deg, #2f2e41 60%, #f2f2f2 60%),
-        linear-gradient(90deg, #f04e4e, #4e2d8b);
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
     }
 
-    .player::before {
+    .card {
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      transition: transform 250ms ease, border 250ms ease;
+    }
+
+    .card::before {
       content: "";
       position: absolute;
-      width: 80%;
-      height: 18px;
-      top: -18px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 6px 6px 2px 2px;
-      background: linear-gradient(90deg, #1c1f3b 20%, #ff4d6d 20% 80%, #1c1f3b 80%);
-      border: 4px solid #111224;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(179, 104, 255, 0.3), transparent 70%);
+      opacity: 0;
+      transition: opacity 300ms ease;
+      z-index: -1;
     }
 
-    .player[data-facing="left"] {
-      transform: translate(-50%, -65%) scaleX(-1);
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(179, 104, 255, 0.4);
     }
 
-    .player[data-facing="right"],
-    .player[data-facing="up"],
-    .player[data-facing="down"] {
-      transform: translate(-50%, -65%) scaleX(1);
+    .card:hover::before {
+      opacity: 1;
     }
 
-    .npc {
-      left: calc(var(--tile) * 6);
-      top: calc(var(--tile) * 5);
-      transform: translate(-50%, -60%);
-      background:
-        linear-gradient(180deg, #fee5a7 45%, transparent 45%),
-        linear-gradient(0deg, #304f9f 55%, #f8f8f3 55%);
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-family: "Space Grotesk", sans-serif;
     }
 
-    .npc .bubble {
-      position: absolute;
-      top: -38px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #fff;
-      color: #1b1d2c;
-      font-family: "Press Start 2P", monospace;
-      font-size: 0.55rem;
-      padding: 6px 10px;
-      border-radius: 8px;
-      border: 3px solid #25294b;
-      box-shadow: 0 6px 0 rgba(0, 0, 0, 0.4);
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
     }
 
-    @keyframes glow {
-      0% { box-shadow: 0 0 10px rgba(255, 186, 74, 0.6), 0 0 25px rgba(255, 186, 74, 0.2); }
-      50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 35px rgba(255, 186, 74, 0.7); }
-      100% { box-shadow: 0 0 12px rgba(255, 186, 74, 0.7), 0 0 28px rgba(255, 186, 74, 0.3); }
+    .contact-panel {
+      text-align: center;
+      padding: clamp(2rem, 5vw, 3rem);
+      border-radius: calc(var(--radius) + 6px);
+      background: linear-gradient(120deg, rgba(91, 44, 255, 0.9), rgba(12, 12, 20, 0.9));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 40px 80px rgba(91, 44, 255, 0.35);
+    }
+
+    .contact-panel h2 {
+      margin: 0 0 0.6rem;
+      font-size: 2rem;
+    }
+
+    .contact-panel p {
+      margin: 0 auto 1.5rem;
+      max-width: 480px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Motion */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 900ms ease forwards;
+    }
+
+    .fade-up.delay-1 { animation-delay: 0.2s; }
+    .fade-up.delay-2 { animation-delay: 0.4s; }
+    .fade-up.delay-3 { animation-delay: 0.6s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 640px) {
-      .world-branding {
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-      }
-
-      .game-map {
-        width: min(92vw, calc(var(--tile) * 10));
-      }
+      header { flex-direction: column; }
+      nav ul { flex-wrap: wrap; justify-content: center; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
     }
   </style>
 </head>
 <body>
-  <div class="world" aria-label="Pixel Plains overworld">
-    <div class="world-branding">
-      <p class="eyebrow">Pixel Plains</p>
-      <h1>Overworld Portfolio</h1>
-    </div>
+  <header>
+    <div class="logo">Your Name</div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="game-map" role="application" aria-label="Overhead view of a miniature pixel world">
-      <div class="path path-horizontal" aria-hidden="true"></div>
-      <div class="path path-vertical" aria-hidden="true"></div>
-      <div class="pond" aria-hidden="true"></div>
-
-      <div class="lab" aria-hidden="true">
-        <a class="lab-door" href="interaction.html" aria-label="Enter the placeholder lab">Enter<span>open lab</span></a>
+  <main>
+    <section class="hero">
+      <div class="fade-up">
+        <p class="eyebrow">Product designer & engineer</p>
+        <h1>I build smooth, human-centered experiences for the web.</h1>
+        <p>With a hybrid background in UX, front-end engineering, and creative direction, I help teams launch polished interfaces that feel effortless to use.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Start a project</a>
+          <a class="btn btn-ghost" href="interaction.html">View latest case study</a>
+        </div>
       </div>
-
-      <div class="player" role="img" aria-label="Player sprite ready to explore" data-facing="down"></div>
-      <div class="npc" role="img" aria-label="Professor sprite guarding the lab">
-        <span class="bubble">!</span>
+      <div class="hero-preview fade-up delay-1">
+        <h2>Snapshot</h2>
+        <p class="stat">12+</p>
+        <p class="stat-label">Products launched</p>
+        <p class="stat" style="margin-top: 1.5rem;">$40M+</p>
+        <p class="stat-label">Revenue influenced</p>
       </div>
+    </section>
 
-      <div class="tree" style="--x: 1.2; --y: 1.2;"></div>
-      <div class="tree" style="--x: 2.3; --y: 0.9;"></div>
-      <div class="tree" style="--x: 8.6; --y: 1.4;"></div>
-      <div class="tree" style="--x: 8.9; --y: 2.4;"></div>
-      <div class="tree" style="--x: 0.8; --y: 3.2;"></div>
-      <div class="tree" style="--x: 2.2; --y: 5.9;"></div>
-      <div class="tree" style="--x: 9.2; --y: 5.8;"></div>
-      <div class="tree" style="--x: 7.8; --y: 6.6;"></div>
-    </div>
-  </div>
+    <section id="about" class="fade-up delay-1">
+      <p class="eyebrow">About</p>
+      <h2>Obsessed with clarity, motion, and meaningful systems.</h2>
+      <p>I currently lead design-engineering projects for early-stage startups, translating fuzzy ideas into shippable experiences. I thrive in ambiguous spaces, pairing rapid prototyping with thoughtful storytelling to bring people along for the ride.</p>
+    </section>
+
+    <section id="work" class="fade-up delay-2">
+      <p class="eyebrow">Selected work</p>
+      <div class="grid">
+        <article class="card">
+          <h3>Nova Analytics</h3>
+          <p>Designed a modular insight surface with live theming controls and motion states that keep enterprise dashboards playful.</p>
+          <a href="#">Explore project →</a>
+        </article>
+        <article class="card">
+          <h3>Orbit Pay</h3>
+          <p>Led the front-end build for a fintech checkout flow with 25% faster completion through microinteractions and adaptive copy.</p>
+          <a href="#">See the prototype →</a>
+        </article>
+        <article class="card">
+          <h3>Lumen OS</h3>
+          <p>Architected a design system spanning marketing and product, complete with code-ready tokens and animation guidelines.</p>
+          <a href="#">Dive into system →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="fade-up delay-3">
+      <div class="contact-panel">
+        <p class="eyebrow">Contact</p>
+        <h2>Let’s build something bold.</h2>
+        <p>Whether you need a design sprint, a polished marketing site, or a full product rethink, I can help you move fast without sacrificing craft.</p>
+        <div class="hero-actions" style="justify-content: center;">
+          <a class="btn btn-primary" href="mailto:you@example.com">Email me</a>
+          <a class="btn btn-ghost" href="https://github.com/your" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Your Name — crafted with smooth gradients.
+  </footer>
 
   <script>
-    const player = document.querySelector('.player');
-    const position = { x: 4.5, y: 4.2 };
-    const bounds = { minX: 0.8, maxX: 9.2, minY: 1.0, maxY: 7.2 };
-    const step = 0.35;
-
-    const moves = {
-      ArrowUp: { axis: 'y', delta: -step, facing: 'up' },
-      ArrowDown: { axis: 'y', delta: step, facing: 'down' },
-      ArrowLeft: { axis: 'x', delta: -step, facing: 'left' },
-      ArrowRight: { axis: 'x', delta: step, facing: 'right' }
-    };
-
-    function updatePlayer() {
-      player.style.setProperty('--player-x', position.x);
-      player.style.setProperty('--player-y', position.y);
-    }
-
-    updatePlayer();
-
-    window.addEventListener('keydown', (event) => {
-      const move = moves[event.key];
-      if (!move) {
-        return;
-      }
-      event.preventDefault();
-
-      const limits = move.axis === 'x'
-        ? { min: bounds.minX, max: bounds.maxX }
-        : { min: bounds.minY, max: bounds.maxY };
-
-      const target = position[move.axis] + move.delta;
-      position[move.axis] = Math.min(limits.max, Math.max(limits.min, target));
-
-      updatePlayer();
-      player.dataset.facing = move.facing;
-    });
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
