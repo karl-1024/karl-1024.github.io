@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prototype Lab — Pixel Plains</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      font-family: "Space Grotesk", sans-serif;
+      color-scheme: light dark;
+      --bg: #040612;
+      --panel: #10142a;
+      --accent: #ffba4a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 20%, #1d2444, var(--bg));
+      color: #f5f8ff;
+      padding: 2rem;
+    }
+
+    .panel {
+      background: linear-gradient(135deg, #0b0f22, var(--panel));
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      width: min(520px, 100%);
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    .panel h1 {
+      margin: 0 0 0.5rem;
+      font-family: "Press Start 2P", monospace;
+      letter-spacing: 0.12em;
+      font-size: clamp(1rem, 4vw, 1.4rem);
+      text-transform: uppercase;
+    }
+
+    .panel p {
+      margin: 0.5rem 0;
+      color: #c7ceff;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 0.5rem 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      margin-top: 2rem;
+      padding: 0.85rem 1.5rem;
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #040612;
+      background: var(--accent);
+      border-radius: 12px;
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .back-link span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border: 3px solid #040612;
+      border-right: 0;
+      border-top: 0;
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <div class="pill">Prototype room</div>
+    <h1>Under construction</h1>
+    <p>This is where a deep-dive page, video, or interactive demo can live once you wire it up.</p>
+    <p>For now, imagine NPCs briefing you on the project while retro music plays softly in the background.</p>
+    <a class="back-link" href="index.html"><span></span>Back to overworld</a>
+  </main>
+</body>
+</html>
