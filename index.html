@@ -22,6 +22,11 @@
       --radius: 24px;
       font-size: 16px;
       font-family: "Space Grotesk", "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      .hero-image {
+        width: 100%;
+        border-radius: 16px;
+        object-fit: cover;
+      }
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -291,11 +296,11 @@
 </head>
 <body>
   <header>
-    <div class="logo">Your Name</div>
+    <div class="logo">Karl Chu</div>
     <nav>
       <ul>
         <li><a href="#about">About</a></li>
-        <li><a href="#work">Work</a></li>
+        <li><a href="#work">Articles</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -313,11 +318,7 @@
         </div>
       </div>
       <div class="hero-preview fade-up delay-1">
-        <h2>Stats</h2>
-        <p class="stat">67</p>
-        <p class="stat-label">Products launched</p>
-        <p class="stat" style="margin-top: 1.5rem;">67</p>
-        <p class="stat-label">Revenue influenced</p>
+        <img src="4.png" alt="Portrait of Karl Chu" class="hero-image" />
       </div>
     </section>
 
