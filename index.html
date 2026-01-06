@@ -1,5 +1,373 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Karl Chu</title>
+    <meta name="description" content="Karl Chu • Essays, reflections, and experiments from Taipei." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #f1e7d0;
+        --sepia: #36220e;
+        --earth: #5c3a21;
+        --amber: #c7a47b;
+        --shadow: rgba(0, 0, 0, 0.65);
+        font-family: "Libre Baskerville", "Playfair Display", serif;
+        line-height: 1.6;
+        scroll-behavior: smooth;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: #170f0a;
+        color: var(--ink);
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at 20% 20%, rgba(255, 224, 189, 0.15), transparent 60%),
+          repeating-linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 20px, rgba(255, 255, 255, 0.02) 20px, rgba(255, 255, 255, 0.02) 21px);
+        mix-blend-mode: overlay;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(71, 28, 12, 0.45), rgba(5, 2, 1, 0.8));
+        z-index: 0;
+      }
+
+      main, header, footer {
+        position: relative;
+        z-index: 1;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: clamp(2rem, 4vw, 4rem) clamp(1.25rem, 4vw, 3rem) 4rem;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0 2rem;
+      }
+
+      .brand {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 1.25rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 0.85rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      nav a {
+        color: var(--amber);
+        text-decoration: none;
+        transition: color 200ms ease;
+      }
+
+      nav a:hover { color: var(--ink); }
+
+      .hero {
+        display: grid;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .eyebrow {
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: var(--amber);
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        margin: 0.5rem 0 1rem;
+      }
+
+      .hero p {
+        max-width: 52ch;
+        font-size: 1.05rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .hero-actions a {
+        padding: 0.85rem 1.8rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.35em;
+        text-decoration: none;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.08);
+        transition: transform 200ms ease, box-shadow 200ms ease;
+      }
+
+      .hero-actions a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      section {
+        margin-bottom: 3rem;
+      }
+
+      .panel {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: clamp(1.5rem, 3vw, 2.5rem);
+        box-shadow: 0 20px 40px var(--shadow);
+      }
+
+      .panel h2 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.75rem, 4vw, 2.3rem);
+      }
+
+      .panel p {
+        margin-top: 0;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        border-radius: 20px;
+        padding: 1.5rem;
+        background: radial-gradient(circle at 20% 20%, rgba(199, 164, 123, 0.18), transparent 50%),
+          rgba(18, 10, 6, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+
+      .card h3 {
+        margin: 0;
+        font-family: "Playfair Display", serif;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        font-size: 1rem;
+      }
+
+      .card span {
+        font-size: 0.75rem;
+        letter-spacing: 0.25em;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .quote {
+        font-style: italic;
+        border-left: 3px solid rgba(255, 255, 255, 0.3);
+        padding-left: 1rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      footer {
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 2rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+      }
+
+      .contact-card {
+        padding: 1.25rem;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .contact-card a {
+        color: var(--amber);
+        text-decoration: none;
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+      }
+
+      @media (max-width: 640px) {
+        header { flex-direction: column; gap: 0.75rem; }
+        nav ul { flex-wrap: wrap; justify-content: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="brand">Karl Chu</div>
+        <nav>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#contact">Connect</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div>
+            <p class="eyebrow">scholar • writer • tinkerer</p>
+            <h1>Letters from a coffee-scented desk.</h1>
+            <p>
+              I collect notes about systems, people, and the curious knotted things between them. I keep the
+              prose spare, the questions sharp, and the ink a shade of brown that reflects the afternoon light
+              slipping through Taipei’s rain-streaked windows.
+            </p>
+            <div class="hero-actions">
+              <a href="#works">View essays</a>
+              <a href="#contact">Drop a note</a>
+            </div>
+          </div>
+          <div class="panel">
+            <p class="eyebrow">Studio Notes</p>
+            <h2>Tan-lined reflections</h2>
+            <p>
+              Here’s where I trace new drafts, archive conversations with mentors, and sketch the mood boards that
+              become my writing rituals. I value patience over haste, context over buzzwords, and quiet discipline.
+            </p>
+            <p class="quote">“Meaning lives between the dust and the light.”</p>
+          </div>
+        </section>
+
+        <section id="about">
+          <div class="panel">
+            <p class="eyebrow">About</p>
+            <h2>Dark academia with kinetic curiosity.</h2>
+            <p>
+              I am a Taipei-based student exploring how policy, design, and narrative intersect. Outside the stacks,
+              I follow rivers of research, coax old typewriters awake, and build prototypes for how better systems
+              can listen to the people they serve.
+            </p>
+            <div class="grid" style="margin-top: 1.5rem;">
+              <div class="contact-card">
+                <span>Focus</span>
+                <p>Policy research, analog publishing, speculative futures.</p>
+              </div>
+              <div class="contact-card">
+                <span>Values</span>
+                <p>Elegance in craft, responsibility in knowledge, and honest curiosity.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="works">
+          <p class="eyebrow">Selected writings</p>
+          <div class="grid">
+            <article class="card">
+              <span>January 2026</span>
+              <h3>Rituals for the Quiet Room</h3>
+              <p>
+                How curated solitude, deliberate pacing, and small rituals can guard intellectual freedom in a noisy
+                world. Includes a template for a nocturnal reading ledger.
+              </p>
+            </article>
+            <article class="card">
+              <span>November 2025</span>
+              <h3>The Practical Value of Academic Empathy</h3>
+              <p>
+                Investigating when representation matters most, especially in life-and-death professions, and what
+                economic empathy could unlock for the next generation of practitioners.
+              </p>
+            </article>
+            <article class="card">
+              <span>July 2025</span>
+              <h3>Falling in Love with Systems</h3>
+              <p>
+                A field notebook of experiments: mapping systemic breakdowns, prototyping small levers, and holding
+                onto the human stories that keep disciplines honest.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="contact">
+          <div class="panel">
+            <p class="eyebrow">Connect</p>
+            <h2>New conversations welcome.</h2>
+            <p>
+              If you have a curious brief, an event in need of a voice, or a slow-brewed research idea, let’s find
+              a time to talk.
+            </p>
+            <div class="contact-grid">
+              <div class="contact-card">
+                <p>Mail</p>
+                <a href="mailto:you@example.com">you@example.com</a>
+              </div>
+              <div class="contact-card">
+                <p>More writings</p>
+                <a href="https://github.com/your" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        &copy; <span id="year"></span> Karl Chu — dark academia stationery for the curious.
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html><!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
